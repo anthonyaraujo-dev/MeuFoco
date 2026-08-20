@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Foco - Início</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="barra-navegacao">
+        <a href="inicio.html" class="logo">Meu Foco</a>
+        <nav class="menu-principal" aria-label="Navegação principal">
+            <a href="inicio.html" class="menu-link ativo">Início</a>
+            <a href="recomendacoes.html" class="menu-link">Recomendações</a>
+            <a href="perfil.html" class="menu-link">Meu perfil</a>
+            <button type="button" id="botao-logout" class="botao botao-secundario">Sair</button>
+        </nav>
+    </header>
+
+    <main class="pagina pagina-inicio">
+        <section class="cabecalho-dashboard">
+            <div>
+                <p class="texto-pequeno">Olá, <span id="nome-usuario">estudante</span>!</p>
+                <h1>Seu foco de hoje</h1>
+                <p>Uma rotina possível é melhor do que uma rotina perfeita.</p>
+            </div>
+            <div class="data-atual">
+                <strong id="data-atual"></strong>
+            </div>
+        </section>
+
+        <section class="secao-frase">
+            <h2>Frase do dia</h2>
+            <blockquote id="frase-do-dia"></blockquote>
+            <button type="button" id="nova-frase" class="botao botao-secundario">Nova frase</button>
+        </section>
+
+        <section class="secao-acoes">
+            <article class="card-acao">
+                <h2>O que estudar agora?</h2>
+                <p>Analise suas tarefas, provas, dificuldades e tempo disponível.</p>
+                <button type="button" id="botao-estudar-agora" class="botao botao-principal">⚠ O que estudar agora?</button>
+                <div id="resultado-estudar-agora" class="resultado" aria-live="polite"></div>
+            </article>
+
+            <article class="card-acao">
+                <h2>Organize meu caos</h2>
+                <p>Adicione tarefas acumuladas e classifique suas prioridades.</p>
+                <form id="form-tarefa" class="form-tarefa">
+                    <div class="campo">
+                        <label for="tarefa-nome">Tarefa</label>
+                        <input type="text" id="tarefa-nome" placeholder="Ex.: Prova de Biologia" required>
+                    </div>
+                    <div class="campo">
+                        <label for="tarefa-materia">Matéria</label>
+                        <input type="text" id="tarefa-materia" placeholder="Ex.: Biologia" required>
+                    </div>
+                    <div class="campo">
+                        <label for="tarefa-prazo">Prazo</label>
+                        <input type="date" id="tarefa-prazo" required>
+                    </div>
+                    <div class="campo">
+                        <label for="tarefa-dificuldade">Dificuldade</label>
+                        <select id="tarefa-dificuldade">
+                            <option value="baixa">Baixa</option>
+                            <option value="media" selected>Média</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="botao botao-principal">Adicionar tarefa</button>
+                </form>
+                <p id="tarefa-mensagem" class="mensagem" role="alert"></p>
+            </article>
+        </section>
+
+        <section class="secao-conteudo">
+            <article class="card-conteudo">
+                <h2>Minhas tarefas</h2>
+                <div id="lista-tarefas" class="lista-tarefas"></div>
+            </article>
+
+            <article class="card-conteudo">
+                <h2>Meu cronograma</h2>
+                <div id="lista-cronograma" class="lista-cronograma"></div>
+            </article>
+        </section>
+
+        <section class="secao-progresso">
+            <h2>Meu progresso</h2>
+            <div class="progresso-resumo">
+                <div class="indicador">
+                    <strong id="tarefas-concluidas">0</strong>
+                    <span>tarefas concluídas</span>
+                </div>
+                <div class="indicador">
+                    <strong id="tarefas-pendentes">0</strong>
+                    <span>tarefas pendentes</span>
+                </div>
+                <div class="indicador">
+                    <strong id="tempo-estudado">0h00</strong>
+                    <span>tempo estudado</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/inicio.js"></script>
+</body>
+</html>

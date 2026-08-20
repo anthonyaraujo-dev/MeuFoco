@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Foco - Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="pagina pagina-cadastro">
+        <section class="card-cadastro">
+            <header class="cabecalho-cadastro">
+                <h1>Crie sua conta</h1>
+                <p>Vamos conhecer sua rotina para ajudar a organizar seus estudos.</p>
+            </header>
+
+            <form id="form-cadastro" novalidate>
+                <fieldset class="grupo-formulario">
+                    <legend>Dados básicos</legend>
+
+                    <div class="campo">
+                        <label for="cadastro-nome">Nome</label>
+                        <input type="text" id="cadastro-nome" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cadastro-email">E-mail</label>
+                        <input type="email" id="cadastro-email" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cadastro-senha">Senha</label>
+                        <input type="password" id="cadastro-senha" minlength="6" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cadastro-confirmacao">Confirmar senha</label>
+                        <input type="password" id="cadastro-confirmacao" minlength="6" required>
+                    </div>
+                </fieldset>
+
+                <fieldset class="grupo-formulario">
+                    <legend>Sua rotina</legend>
+
+                    <div class="campo">
+                        <label for="horario-escola-inicio">Horário de início da escola</label>
+                        <input type="time" id="horario-escola-inicio">
+                    </div>
+
+                    <div class="campo">
+                        <label for="horario-escola-fim">Horário de término da escola</label>
+                        <input type="time" id="horario-escola-fim">
+                    </div>
+
+                    <div class="campo">
+                        <label for="horario-estudo-inicio">Horário disponível para estudar — início</label>
+                        <input type="time" id="horario-estudo-inicio">
+                    </div>
+
+                    <div class="campo">
+                        <label for="horario-estudo-fim">Horário disponível para estudar — fim</label>
+                        <input type="time" id="horario-estudo-fim">
+                    </div>
+
+                    <div class="campo">
+                        <label for="materias-dificeis">Matérias que você considera difíceis</label>
+                        <input type="text" id="materias-dificeis" placeholder="Ex.: Matemática, Química">
+                    </div>
+
+                    <div class="campo">
+                        <label for="dias-prova">Próximas provas</label>
+                        <textarea id="dias-prova" rows="3" placeholder="Ex.: Biologia - 25/08; Matemática - 28/08"></textarea>
+                    </div>
+
+                    <div class="campo">
+                        <label for="objetivo">Meu objetivo</label>
+                        <select id="objetivo" required>
+                            <option value="">Selecione</option>
+                            <option value="passar-no-enem">Passar no ENEM</option>
+                            <option value="melhorar-notas">Melhorar minhas notas</option>
+                            <option value="nao-acumular">Não acumular tarefas</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <p id="cadastro-mensagem" class="mensagem" role="alert"></p>
+
+                <button type="submit" class="botao botao-principal">Criar minha conta</button>
+            </form>
+
+            <p class="link-alternativo">
+                Já possui uma conta?
+                <a href="index.html">Entrar</a>
+            </p>
+        </section>
+    </main>
+
+    <script src="js/cadastro.js"></script>
+</body>
+</html>

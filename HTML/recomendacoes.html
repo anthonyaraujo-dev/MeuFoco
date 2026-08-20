@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Foco - Recomendações</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="barra-navegacao">
+        <a href="inicio.html" class="logo">Meu Foco</a>
+        <nav class="menu-principal" aria-label="Navegação principal">
+            <a href="inicio.html" class="menu-link">Início</a>
+            <a href="recomendacoes.html" class="menu-link ativo">Recomendações</a>
+            <a href="perfil.html" class="menu-link">Meu perfil</a>
+            <button type="button" id="botao-logout" class="botao botao-secundario">Sair</button>
+        </nav>
+    </header>
+
+    <main class="pagina pagina-recomendacoes">
+        <header class="cabecalho-pagina">
+            <p class="texto-pequeno">Conteúdos para você</p>
+            <h1>Recomendações de estudo</h1>
+            <p>Encontre recursos de acordo com a matéria e com o que você precisa fazer.</p>
+        </header>
+
+        <section class="filtros-recomendacoes">
+            <div class="campo">
+                <label for="filtro-materia">Matéria</label>
+                <select id="filtro-materia">
+                    <option value="todas">Todas</option>
+                    <option value="matematica">Matemática</option>
+                    <option value="fisica">Física</option>
+                    <option value="quimica">Química</option>
+                    <option value="biologia">Biologia</option>
+                    <option value="historia">História</option>
+                    <option value="linguagens">Linguagens</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="filtro-tipo">Tipo de recurso</label>
+                <select id="filtro-tipo">
+                    <option value="todos">Todos</option>
+                    <option value="videoaula">Videoaula</option>
+                    <option value="apostila">Apostila</option>
+                    <option value="quiz">Quiz</option>
+                    <option value="podcast">Podcast</option>
+                    <option value="exercicios">Lista de exercícios</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="lista-recomendacoes" class="grid-recomendacoes"></section>
+    </main>
+
+    <script src="js/recomendacoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Foco - Meu Perfil</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="barra-navegacao">
+        <a href="inicio.html" class="logo">Meu Foco</a>
+        <nav class="menu-principal" aria-label="Navegação principal">
+            <a href="inicio.html" class="menu-link">Início</a>
+            <a href="recomendacoes.html" class="menu-link">Recomendações</a>
+            <a href="perfil.html" class="menu-link ativo">Meu perfil</a>
+            <button type="button" id="botao-logout" class="botao botao-secundario">Sair</button>
+        </nav>
+    </header>
+
+    <main class="pagina pagina-perfil">
+        <header class="cabecalho-pagina">
+            <h1>Meu perfil</h1>
+            <p>Altere seus dados e mantenha sua rotina atualizada.</p>
+        </header>
+
+        <section class="card-perfil">
+            <form id="form-perfil" novalidate>
+                <div class="campo">
+                    <label for="perfil-nome">Nome</label>
+                    <input type="text" id="perfil-nome" required>
+                </div>
+
+                <div class="campo">
+                    <label for="perfil-email">E-mail</label>
+                    <input type="email" id="perfil-email" required>
+                </div>
+
+                <div class="campo">
+                    <label for="perfil-materias">Matérias difíceis</label>
+                    <input type="text" id="perfil-materias">
+                </div>
+
+                <div class="campo">
+                    <label for="perfil-objetivo">Objetivo</label>
+                    <select id="perfil-objetivo">
+                        <option value="passar-no-enem">Passar no ENEM</option>
+                        <option value="melhorar-notas">Melhorar minhas notas</option>
+                        <option value="nao-acumular">Não acumular tarefas</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="perfil-horario-inicio">Horário disponível para estudar — início</label>
+                    <input type="time" id="perfil-horario-inicio">
+                </div>
+
+                <div class="campo">
+                    <label for="perfil-horario-fim">Horário disponível para estudar — fim</label>
+                    <input type="time" id="perfil-horario-fim">
+                </div>
+
+                <p id="perfil-mensagem" class="mensagem" role="alert"></p>
+
+                <button type="submit" class="botao botao-principal">Salvar alterações</button>
+            </form>
+        </section>
+
+        <section class="acoes-conta">
+            <h2>Dados da conta</h2>
+            <button type="button" id="botao-backup" class="botao botao-secundario">Fazer backup dos dados</button>
+            <button type="button" id="botao-excluir" class="botao botao-perigo">Excluir conta</button>
+            <p id="conta-mensagem" class="mensagem" role="alert"></p>
+        </section>
+    </main>
+
+    <script src="js/perfil.js"></script>
+</body>
+</html>
