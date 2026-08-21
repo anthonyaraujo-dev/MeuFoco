@@ -1,281 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meu Foco - Login</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #C8DFB7;
-    --gold: #DECE89;
-    --gold-input: #DECE88;
-    --cream: #FFF8D7;
-    --heading-olive: #BCAC68;
-    --accent-red: #FF0000;
-    --white: #FFFFFF;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: #EAF2E2;
-    font-family: 'Nunito', sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 24px;
-  }
-
-  .notebook {
-    position: relative;
-    width: 100%;
-    max-width: 1280px;
-    min-height: 993px;
-    background: var(--bg);
-    border-radius: 30px;
-    padding: 24px 26px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    min-height: 67px;
-  }
-
-  .topbar .icon-square {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    background: var(--accent-red);
-    border-radius: 8px;
-  }
-
-  .topbar h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 55px;
-    line-height: 67px;
-    color: var(--white);
-    text-align: center;
-  }
-
-  .auth-panel {
-    flex: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
-    border-radius: 20px;
-    overflow: hidden;
-    min-height: 780px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  }
-
-  .auth-left {
-    background: var(--gold);
-    border-radius: 30px 0 0 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 48px 40px;
-    gap: 28px;
-  }
-
-  .auth-left h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 1.15;
-    color: var(--white);
-  }
-
-  .auth-left p {
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 1.3;
-    color: var(--white);
-    max-width: 380px;
-  }
-
-  .cta-outline {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 32px;
-    border: 1px solid var(--white);
-    border-radius: 20px;
-    font-weight: 400;
-    font-size: 22px;
-    color: var(--white);
-    text-decoration: none;
-    background: transparent;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .cta-outline:hover {
-    background: var(--white);
-    color: var(--gold);
-  }
-
-  .auth-right {
-    background: var(--cream);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 48px 56px;
-    gap: 28px;
-  }
-
-  .auth-right h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 52px;
-    line-height: 1.1;
-    color: var(--heading-olive);
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
-  form.signup-form {
-    width: 100%;
-    max-width: 505px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    flex: 1;
-  }
-
-  .field {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-    background: var(--gold-input);
-    border-radius: 10px;
-    padding: 18px 22px;
-  }
-
-  .field svg {
-    flex: none;
-    width: 26px;
-    height: 26px;
-    color: var(--cream);
-  }
-
-  .field input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    color: var(--cream);
-  }
-
-  .field input::placeholder {
-    color: var(--cream);
-    opacity: 0.9;
-  }
-
-  .submit-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: auto;
-  }
-
-  .submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 28px;
-    background: var(--gold-input);
-    border: 1px solid #DDCE8E;
-    border-radius: 8px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--cream);
-    cursor: pointer;
-    transition: filter 0.2s ease;
-  }
-
-  .submit-btn:hover { filter: brightness(0.95); }
-
-  @media (max-width: 860px) {
-    .auth-panel { grid-template-columns: 1fr; min-height: unset; }
-    .auth-left { border-radius: 30px 30px 0 0; padding: 40px 24px; }
-    .auth-right { padding: 40px 24px; }
-    .auth-left h2 { font-size: 34px; }
-    .auth-right h2 { font-size: 36px; }
-    .topbar h1 { font-size: 34px; line-height: 40px; }
-    .topbar .icon-square { width: 36px; height: 36px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Foco - Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <main class="pagina pagina-cadastro">
+        <section class="card-cadastro">
+            <header class="cabecalho-cadastro">
+                <h1>Crie sua conta</h1>
+                <p>Vamos conhecer sua rotina para ajudar a organizar seus estudos.</p>
+            </header>
 
-<div class="notebook">
+            <form id="form-cadastro" novalidate>
+                <fieldset class="grupo-formulario">
+                    <legend>Dados básicos</legend>
 
-  <header class="topbar">
-    <div class="icon-square" aria-hidden="true"></div>
-    <h1>Meu Foco</h1>
-  </header>
+                    <div class="campo">
+                        <label for="cadastro-nome">Nome</label>
+                        <input type="text" id="cadastro-nome" required>
+                    </div>
 
-  <section class="auth-panel">
+                    <div class="campo">
+                        <label for="cadastro-email">E-mail</label>
+                        <input type="email" id="cadastro-email" required>
+                    </div>
 
-    <div class="auth-left">
-      <h2>Bem vindo(a)</h2>
-      <p>Organize seus estudos, monte seu cronograma e não perca o foco. É novo aqui? Faça seu cadastro abaixo.</p>
-      <a href="#form-cadastro" class="cta-outline">Cadastre-se</a>
-    </div>
+                    <div class="campo">
+                        <label for="cadastro-senha">Senha</label>
+                        <input type="password" id="cadastro-senha" minlength="6" required>
+                    </div>
 
-    <div class="auth-right">
-      <h2>Faça seu login</h2>
+                    <div class="campo">
+                        <label for="cadastro-confirmacao">Confirmar senha</label>
+                        <input type="password" id="cadastro-confirmacao" minlength="6" required>
+                    </div>
+                </fieldset>
 
-      <form class="signup-form" id="form-cadastro">
-        <label class="field">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M22 6l-10 7L2 6"/>
-          </svg>
-          <input type="email" name="email" placeholder="Email" required>
-        </label>
+                <fieldset class="grupo-formulario">
+                    <legend>Sua rotina</legend>
 
-        <label class="field">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="11" width="16" height="10" rx="2"/>
-            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
-          </svg>
-          <input type="password" name="senha" placeholder="Senha" required>
-        </label>
+                    <div class="campo">
+                        <label for="horario-escola-inicio">Horário de início da escola</label>
+                        <input type="time" id="horario-escola-inicio">
+                    </div>
 
-        <label class="field">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="11" width="16" height="10" rx="2"/>
-            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
-          </svg>
-          <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
-        </label>
+                    <div class="campo">
+                        <label for="horario-escola-fim">Horário de término da escola</label>
+                        <input type="time" id="horario-escola-fim">
+                    </div>
 
-        <div class="submit-row">
-          <a href="index.html"><button type="submit" class="submit-btn">Fazer login</button></a>
-        </div>
-      </form>
-    </div>
+                    <div class="campo">
+                        <label for="horario-estudo-inicio">Horário disponível para estudar — início</label>
+                        <input type="time" id="horario-estudo-inicio">
+                    </div>
 
-  </section>
+                    <div class="campo">
+                        <label for="horario-estudo-fim">Horário disponível para estudar — fim</label>
+                        <input type="time" id="horario-estudo-fim">
+                    </div>
 
-</div>
-<!--Eu nunca mais quero passar por isso, pela fé-->
+                    <div class="campo">
+                        <label for="materias-dificeis">Matérias que você considera difíceis</label>
+                        <input type="text" id="materias-dificeis" placeholder="Ex.: Matemática, Química">
+                    </div>
+
+                    <div class="campo">
+                        <label for="dias-prova">Próximas provas</label>
+                        <textarea id="dias-prova" rows="3" placeholder="Ex.: Biologia - 25/08; Matemática - 28/08"></textarea>
+                    </div>
+
+                    <div class="campo">
+                        <label for="objetivo">Meu objetivo</label>
+                        <select id="objetivo" required>
+                            <option value="">Selecione</option>
+                            <option value="passar-no-enem">Passar no ENEM</option>
+                            <option value="melhorar-notas">Melhorar minhas notas</option>
+                            <option value="nao-acumular">Não acumular tarefas</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <p id="cadastro-mensagem" class="mensagem" role="alert"></p>
+
+                <button type="submit" class="botao botao-principal">Criar minha conta</button>
+            </form>
+
+            <p class="link-alternativo">
+                Já possui uma conta?
+                <a href="index.html">Entrar</a>
+            </p>
+        </section>
+    </main>
+
+    <script>document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form-cadastro");
+    const mensagem = document.getElementById("cadastro-mensagem");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const nome = document.getElementById("cadastro-nome").value.trim();
+        const email = document.getElementById("cadastro-email").value.trim().toLowerCase();
+        const senha = document.getElementById("cadastro-senha").value;
+        const confirmacao = document.getElementById("cadastro-confirmacao").value;
+        const objetivo = document.getElementById("objetivo").value;
+
+        if (!nome || !email || !senha || !confirmacao || !objetivo) {
+            mensagem.textContent = "Preencha todos os campos obrigatórios.";
+            return;
+        }
+
+        if (senha.length < 6) {
+            mensagem.textContent = "A senha precisa ter pelo menos 6 caracteres.";
+            return;
+        }
+
+        if (senha !== confirmacao) {
+            mensagem.textContent = "As senhas não coincidem.";
+            return;
+        }
+
+        const usuarioExistente = JSON.parse(localStorage.getItem("meuFocoUsuario"));
+
+        if (usuarioExistente && usuarioExistente.email.toLowerCase() === email) {
+            mensagem.textContent = "Já existe uma conta com esse e-mail.";
+            return;
+        }
+
+        const usuario = {
+            nome,
+            email,
+            senha,
+            rotina: {
+                escolaInicio: document.getElementById("horario-escola-inicio").value,
+                escolaFim: document.getElementById("horario-escola-fim").value,
+                estudoInicio: document.getElementById("horario-estudo-inicio").value,
+                estudoFim: document.getElementById("horario-estudo-fim").value
+            },
+            materiasDificeis: document.getElementById("materias-dificeis").value.trim(),
+            provas: document.getElementById("dias-prova").value.trim(),
+            objetivo
+        };
+
+        localStorage.setItem("meuFocoUsuario", JSON.stringify(usuario));
+
+        const tarefasIniciais = [
+            {
+                id: Date.now(),
+                nome: "Revisar conteúdo da semana",
+                materia: usuario.materiasDificeis.split(",")[0]?.trim() || "Estudos",
+                prazo: "",
+                dificuldade: "media",
+                concluida: false
+            }
+        ];
+
+        localStorage.setItem("meuFocoTarefas", JSON.stringify(tarefasIniciais));
+        localStorage.setItem("meuFocoTempoEstudado", "0");
+        localStorage.setItem("meuFocoLogado", "true");
+
+        window.location.href = "inicio.html";
+    });
+});
+</script>
 </body>
 </html>
