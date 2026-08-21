@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Foco</title>
+<style>
+  :root {
+    --bg: #C8DFB7;
+    --card: rgba(255, 255, 255, 0.7);
+    --card-solid: #FFFFFF;
+    --accent-red: #FF0000;
+    --menu-line: #789661;
+    --text-dark-green: #789661;
+    --text-muted-green: #7E986A;
+    --text-white: #FFFFFF;
+    --text-black: #000000;
+    --accent-yellow: #FFEA8C;
+    --accent-blue: #65BBF8;
+    --title-yellow-brown: #CABA70;
+    --quote-green: #A7C590;
+  }
+
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  body {
+    background: #EAF2E2;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+  }
+
+
+  .notebook {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    min-height: 993px;
+    background: var(--bg);
+    border-radius: 30px;
+    padding: 24px 26px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 67px;
+  }
+
+
+  .topbar .icon-square {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-red);
+    border-radius: 8px;
+  }
+
+
+  .topbar h1 {
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 67px;
+    color: var(--text-white);
+    text-align: center;
+  }
+
+
+  .hamburger {
+    position: absolute;
+    right: 0;
+    top: 27px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+
+  .hamburger span {
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--menu-line);
+    border-radius: 40px;
+  }
+
+
+  /* Calendário */
+  .calendar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+
+  .calendar-section > h2 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: var(--text-white);
+  }
+
+
+  .calendar-card {
+    width: 100%;
+    max-width: 1008px;
+    background: var(--card);
+    border-radius: 25px;
+    padding: 24px 30px;
+  }
+
+
+  .calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--card-solid);
+    border: 1px solid var(--accent-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent-yellow);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+
+  .nav-btn:hover { background: var(--accent-yellow); color: #fff; }
+
+
+  .month-label {
+    text-align: center;
+    min-width: 160px;
+  }
+
+
+  .month-label .month {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: var(--text-dark-green);
+    display: block;
+  }
+
+
+  .month-label .year {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--text-muted-green);
+  }
+
+
+  .weekdays, .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+
+
+  .weekdays div {
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--text-dark-green);
+    padding-bottom: 8px;
+  }
+
+
+  .days-grid { margin-top: 4px; }
+
+
+  .day-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--text-black);
+    border-radius: 10px;
+  }
+
+
+  .day-cell.muted { color: var(--text-dark-green); }
+  .day-cell.today { background: var(--card-solid); color: var(--title-yellow-brown); font-weight: 700; }
+
+
+  .bottom-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+
+  .col-left, .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1 1 399px;
+    max-width: 399px;
+  }
+
+
+  .card-title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: var(--text-white);
+    text-align: center;
+  }
+
+
+  /*Cronograma */
+  .schedule-card {
+    background: var(--card);
+    border-radius: 25px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+
+  .schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+
+  .schedule-icon {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    background: var(--card-solid);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .schedule-icon svg { width: 20px; height: 20px; }
+
+
+  .schedule-info { flex: 1; text-align: center; }
+
+
+  .schedule-info .task {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--title-yellow-brown);
+    display: block;
+  }
+
+
+  .schedule-info .time {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--text-muted-green);
+    display: block;
+    margin-top: 4px;
+  }
+
+
+  .dots {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--card-solid);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+
+  .dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-yellow);
+  }
+
+
+  /*Frase do dia*/
+  .quote-card {
+    background: var(--card);
+    border-radius: 25px;
+    padding: 24px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 107px;
+  }
+
+
+  .quote-card p {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--quote-green);
+  }
+
+
+  /*Recomendações*/
+  .recs-card {
+    background: var(--card);
+    border-radius: 25px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+
+  .rec-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+
+  .rec-icon {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    background: var(--card-solid);
+    box-shadow: 0px 0px 10px rgba(255, 232, 156, 0.25);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .rec-icon svg { width: 28px; height: 28px; }
+
+
+  .rec-item p {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--accent-blue);
+    flex: 1;
+  }
+
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--accent-blue);
+    width: 100%;
+  }
+
+
+  .see-more {
+    align-self: flex-end;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--accent-blue);
+    text-decoration: none;
+  }
+
+
+  @media (max-width: 640px) {
+    .notebook { padding: 20px; border-radius: 20px; }
+    .topbar h1 { font-size: 34px; line-height: 40px; }
+    .topbar .icon-square { width: 36px; height: 36px; }
+    .hamburger { top: 8px; }
+    .card-title { font-size: 26px; line-height: 32px; }
+    .calendar-section > h2 { font-size: 26px; line-height: 32px; }
+    .day-cell { font-size: 16px; height: 36px; }
+    .weekdays div { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+
+<div class="notebook">
+
+
+  <header class="topbar">
+    <div class="icon-square" aria-hidden="true"></div>
+    <h1>Meu Foco</h1>
+    <button class="hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+
+  <section class="calendar-section">
+    <h2>Calendário</h2>
+    <div class="calendar-card">
+      <div class="calendar-nav">
+        <button class="nav-btn" id="prevMonth" aria-label="Mês anterior">&#8249;</button>
+        <div class="month-label">
+          <span class="month" id="monthLabel"></span>
+          <span class="year" id="yearLabel"></span>
+        </div>
+        <button class="nav-btn" id="nextMonth" aria-label="Próximo mês">&#8250;</button>
+      </div>
+      <div class="weekdays">
+        <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+      </div>
+      <div class="days-grid" id="daysGrid"></div>
+    </div>
+  </section>
+
+
+  <section class="bottom-row">
+
+
+    <div class="col-left">
+      <h2 class="card-title">Cronograma</h2>
+      <div class="schedule-card">
+
+
+        <div class="schedule-item">
+          <div class="schedule-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="schedule-info">
+            <span class="task">Estudar química</span>
+            <span class="time">19:00h</span>
+          </div>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+
+
+        <div class="schedule-item">
+          <div class="schedule-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="schedule-info">
+            <span class="task">Estudar matemática</span>
+            <span class="time">20:00h</span>
+          </div>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+
+
+        <div class="schedule-item">
+          <div class="schedule-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="schedule-info">
+            <span class="task">Descanso</span>
+            <span class="time">21:00h</span>
+          </div>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+
+
+        <div class="schedule-item">
+          <div class="schedule-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="schedule-info">
+            <span class="task">Estudar português</span>
+            <span class="time">21:25h</span>
+          </div>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+    <!-- Frase do dia + Recomendações -->
+    <div class="col-right">
+      <h2 class="card-title">Frase do dia</h2>
+      <div class="quote-card">
+        <p>“Não permita que aquilo que você não pode fazer interfira naquilo que você pode fazer.”</p>
+      </div>
+
+
+      <h2 class="card-title">Recomendações</h2>
+      <div class="recs-card">
+        <div class="rec-item">
+          <div class="rec-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FFEA8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <p>caderno_química.pdf</p>
+        </div>
+        <hr class="divider">
+        <a href="#" class="see-more">Ver mais...</a>
+      </div>
+    </div>
+
+
+  </section>
+
+
+</div>
+
+
+<script>
+  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  let current = new Date();
+
+
+  function renderCalendar(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+
+    document.getElementById('monthLabel').textContent = monthNames[month];
+    document.getElementById('yearLabel').textContent = year;
+
+
+    const grid = document.getElementById('daysGrid');
+    grid.innerHTML = '';
+
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    const today = new Date();
+
+
+    // dias do mês anterior (preenchimento)
+    for (let i = firstDay - 1; i >= 0; i--) {
+      grid.appendChild(makeDay(daysInPrevMonth - i, true));
+    }
+    // dias do mês atual
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+      grid.appendChild(makeDay(d, false, isToday));
+    }
+    // dias do próximo mês (preenchimento até completar semana)
+    const totalCells = firstDay + daysInMonth;
+    const remaining = (7 - (totalCells % 7)) % 7;
+    for (let d = 1; d <= remaining; d++) {
+      grid.appendChild(makeDay(d, true));
+    }
+  }
+
+
+  function makeDay(num, muted, isToday) {
+    const cell = document.createElement('div');
+    cell.className = 'day-cell' + (muted ? ' muted' : '') + (isToday ? ' today' : '');
+    cell.textContent = num;
+    return cell;
+  }
+
+
+  document.getElementById('prevMonth').addEventListener('click', () => {
+    current = new Date(current.getFullYear(), current.getMonth() - 1, 1);
+    renderCalendar(current);
+  });
+
+
+  document.getElementById('nextMonth').addEventListener('click', () => {
+    current = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+    renderCalendar(current);
+  });
+
+
+  renderCalendar(current);
+</script>
+
+
+</body>
+</html>
